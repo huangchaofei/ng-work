@@ -1,0 +1,8 @@
+    <input nz-input [placeholder]="placeholder" nzSize="default" [(ngModel)]="query" (ngModelChange)="inputChange($event)">
+    <ul class="downselect" [hidden]="!showDropdownFlag">
+        <li *ngFor="let item of items" (click)="clickItem(item)" class="downselect-item" [hidden]="type !== 'station'">{{item.name}}</li>
+        <li *ngFor="let item of items" (click)="clickItem(item)" class="downselect-item" [hidden]="type !== 'enterprise'">{{item.name}}</li>
+        <li *ngFor="let item of items" (click)="clickItem(item)" class="downselect-item" [hidden]="type !== 'device'">{{item.device_number}}</li>
+        <li *ngFor="let item of items" (click)="clickItem(item)" class="downselect-item" [hidden]="type !== 'systemuser'">{{item.name}}</li>
+        <li *ngFor="let item of items" (click)="clickItem(item)" class="downselect-item" [hidden]="type !== 'systemgroup'">{{item.name}}</li>
+    </ul>

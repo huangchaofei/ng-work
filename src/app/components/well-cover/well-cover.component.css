@@ -1,0 +1,152 @@
+.page {
+  height: 100%!important;
+}
+.device-top {
+  height: 40px;
+  line-height: 40px;
+  text-align: left;
+  background: #ffffff;
+  margin: 0px 10px 0px 10px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.device-top-left {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+.device-top-left div {
+  flex: 1;
+  width: 0;
+}
+.device-top-right {
+  float: right;
+}
+.device-container {
+  background-color: #ffffff;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px;
+  height: calc(100% - 40px);
+  display: flex;
+}
+.container-top {
+  margin-bottom: 10px;
+}
+.container-left input,button {
+  display: inline-block;
+}
+.container-left input {
+  margin-right: 30px;
+}
+.container-left button {
+  margin-left: 10px;
+}
+#map {
+  width: 100%;
+  position: absolute;
+  min-height: 100%;
+}
+.addBtn{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+.operate{
+    cursor: pointer;
+}
+.operate img{
+    width: 20px;
+    height: 20px;
+}
+.ant-form-item{
+    margin-bottom: 3px!important;
+}
+.ant-form-item-control-wrapper .ant-form-item-control{
+    line-height: 20px!important;
+}
+.ant-form-item-label{
+    line-height: 20px!important;
+}
+.item-label{
+    text-align: left;
+    margin-right: 5px;
+    line-height: 30px;
+}
+.item-content{
+    line-height: 30px;
+}
+.heart-left{
+    width: 100%;
+}
+.heart-right{
+    display: inline-block;
+    width: 50%;
+    margin-left: 5%;
+}
+.container-top{
+  position: relative;
+}
+/*高德点标注*/
+.info {
+    border: solid 1px silver;
+}
+div.info-top {
+    position: relative;
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-bottom: 1px solid #CCC;
+    border-radius: 5px 5px 0 0;
+}
+div.info-top div {
+    display: inline-block;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 31px;
+    padding: 0 10px;
+}
+div.info-top img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition-duration: 0.25s;
+}
+div.info-top img:hover {
+    box-shadow: 0px 0px 5px #000;
+}
+div.info-middle {
+    font-size: 12px;
+    padding: 6px;
+    line-height: 20px;
+}
+div.info-bottom {
+    height: 0px;
+    width: 100%;
+    clear: both;
+    text-align: center;
+}
+div.info-bottom img {
+    position: relative;
+    z-index: 104;
+}
+span {
+    margin-left: 5px;
+    font-size: 14px;
+}
+.info-middle img {
+    float: left;
+    margin-right: 6px;
+}
+.info-top div{
+    display: inline-block;
+}
+.map-title{
+  font-weight: bold;
+}
+::root .ant-calendar-picker{
+    width: 100%!important;
+}
+::ng-deep .ant-calendar-picker{
+    width: 100%!important;
+}

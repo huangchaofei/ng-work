@@ -1,0 +1,77 @@
+<nz-breadcrumb style="margin:16px 0;">
+  <nz-breadcrumb-item>设置</nz-breadcrumb-item>
+  <nz-breadcrumb-item>系统用户组</nz-breadcrumb-item>
+</nz-breadcrumb>
+<div style="padding:24px; background: #fff;">
+        <!-- <div nz-row>
+                <div nz-col nzSpan="24" class="filter-group">
+                  <div nz-col nzSpan="8" class="filter-input">
+                    <span nz-col nzSpan="4">系统用户组</span>
+                    <div nz-col nzSpan="12">
+                        <app-fuzzy-search [type]="'systemgroup'" [(ngModel)]="systemUserGroupObj"></app-fuzzy-search>
+                    </div>
+                  </div>
+                </div>
+        </div> -->
+        <div style="margin-top:15px;background: #fff;padding: 24px; min-height: 360px;">
+                <div nz-row style="margin-bottom: 15px;">
+                    <div nz-col>
+                        <a [routerLink]="['/systemUserGroup/add']" class="pull-right clearfix">
+                            <button nz-button nzType="default" [routerLink]="['/systemUserGroup/add']"
+                            *ngIf="auth.indexOf(228517892) !== -1"
+                            >添加</button>
+                        </a>
+                        <button nz-button nzType="primary" class="pull-right clearfix" (click)="search()" style="margin-right: 10px"
+                        *ngIf="auth.indexOf(220949346) !== -1"
+                        >查询</button>
+                    </div>
+                </div>
+                    <div nz-row>
+                        <nz-table 
+                            #systemGroupTable [nzData]="systemUserGroup_list" 
+                            [nzPageSize]="20"  
+                            [nzTotal]="info.total" 
+                            [nzFrontPagination]="false" 
+                            (nzPageIndexChange)="changePage($event)"
+                            [nzLoading]="info.loading"
+                            >
+                            <thead>
+                              <tr>
+                                <th>名称</th>
+                                <th>归属单位</th>
+                                <th 
+                                *ngIf="auth.indexOf(244244974) !== -1 || auth.indexOf(237531665) !== -1"
+                                >操作</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of systemGroupTable.data">
+                                <td>{{data.name}}</td>
+                                <td>{{data.enterprise_name}}</td>
+                                <td 
+                                *ngIf="auth.indexOf(244244974) !== -1 || auth.indexOf(237531665) !== -1"
+                                >
+                                   <button type="button" 
+                                          nz-button nzType="primary" 
+                                          nzSize="small"
+                                          [routerLink] = "['/systemUserGroup/edit',data.id]"
+                                          *ngIf="auth.indexOf(237531665) !== -1"
+                                          [disabled]="systemUserGroupId == data.id"
+                                          >编辑</button>
+                                   <button type="button" 
+                                          nz-button nzType="danger" 
+                                          nzSize="small"
+                                          nz-popconfirm
+                                          nzTitle="确认要删除吗?"
+                                          (nzOnConfirm)="delete(data)"
+                                          *ngIf="auth.indexOf(244244974) !== -1"
+                                          [disabled]="systemUserGroupId == data.id" 
+                                          style="margin-left: 5px"
+                                          >删除</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+                </div>
+</div>

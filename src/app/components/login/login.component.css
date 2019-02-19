@@ -1,0 +1,31 @@
+ .login-form {
+   min-width: 300px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+
+ .login-form-forgot {
+   float: right;
+ }
+
+ .login-form-button {
+   width: 100%;
+ }
+ input .ng-invalid{
+   border: 10px solid red!important;
+ }
+ html{
+    background: #2F4050;
+ }
+ body{
+    background-color: #2F4050!important;
+ }
+.title{
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}

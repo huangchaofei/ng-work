@@ -1,0 +1,141 @@
+<div class="page">
+    <div style="position: absolute; background: #ccc; left: -10px; right: -10px; top: -10px; bottom: 0px;">
+        <div id="map" style="width: 100%; height: 100%; z-index: 999;min-height: 705px;"></div>
+    </div>
+    <div class="CoordinateDetails" id="show-info-box">
+    </div>
+    <!--搜索栏部分-->
+    <!-- <div class="SearchBar">
+        <div class="SearchBarBtn">
+        </div>
+        <div class="SearchBarDelBtn" (click)="clear()">
+        </div>
+        <input type="text" 
+        class="SearchBaTextIn" placeholder="搜索设备名称/设备号/地址"
+        [(ngModel)]="info.query" (blur)="blur()" #input id="input" />
+        <div class="clear"></div> -->
+        <!--查询出的地址-->
+        <!-- <ul class="Adress select" [hidden]="!info.show_search_dropdown">
+            <li *ngFor="let x of stations;let i = index;" (click)="clickStationDropdownList(x)">
+                    <span>{{x.device_name}}</span>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div> -->
+    <!-- 城市区筛选 -->
+    <!-- <app-choose-address class="address" (change)="addressChange($event)" #address type="map"></app-choose-address> -->
+    <app-choose-area class="address" [(ngModel)]="info.area" (ngModelChange)="addressChange($event)"></app-choose-area>
+    <!-- 设备详情筛选 -->
+    <nz-select class="detail-condition" style="width: 110px;" nzPlaceHolder="请选择设备类型" [ngModel]="typeCondition" (ngModelChange)="changeType($event)">
+        <nz-option nzValue="" nzLabel="设备"></nz-option>
+        <nz-option nzValue="2" nzLabel="智能井盖"></nz-option>
+        <nz-option nzValue="4" nzLabel="智能锁"></nz-option>
+        <nz-option nzValue="1" nzLabel="烟感"></nz-option>
+        <nz-option nzValue="3" nzLabel="门磁"></nz-option>
+        <nz-option nzValue="5" nzLabel="故障指示器"></nz-option>
+    </nz-select>
+    <!-- 设备状态筛选 -->
+    <nz-select class="status-condition" style="width: 110px;" nzPlaceHolder="请选择设备状态" [ngModel]="statusCondition"  (ngModelChange)="changeStatus($event)">
+        <nz-option nzValue=""  nzLabel="状态"></nz-option>
+        <nz-option nzValue="isNormal"  nzLabel="正常"></nz-option>
+        <nz-option nzValue="isWarning" nzLabel="告警"></nz-option>
+        <nz-option nzValue="isOutLine" nzLabel="离线"></nz-option>
+        <nz-option nzValue="isUnknow"  nzLabel="未知"></nz-option>
+    </nz-select>
+    <div class="all" [@flyIn]="flyIn">
+        <div class="arrow" (click)="showRight()">
+            <i nz-icon type="left" theme="outline" *ngIf="flyIn == 'hidden'"></i>
+            <i nz-icon type="right" theme="outline" *ngIf="flyIn == 'appera'"></i>
+        </div>
+        <!-- 总数 -->
+        <div class="total">
+            当前设备数:{{mapInfo.total_num}}
+        </div>
+        <!-- 右侧筛选 -->
+        <div class="filter-top">
+            <!-- <div class="filter-title">设备详情</div> -->
+            <div class="device-btn-group" nz-row nzGutter="8">
+                <div style="width:20%" nz-col class="device-wrapper">
+                    <!-- (click)="changeType('isWellCover')" [ngClass]="isWellCover? 'active' : ''" -->
+                    <div class="device" nz-col nzSpan="24" (click)="goDeviceByType(2)">
+                        <img src="../../../assets/img/jinggai_zc.png" alt="">
+                    </div>
+                </div>
+                <div style="width:20%" nz-col class="device-wrapper">
+                    <!-- (click)="changeType('isLock')" [ngClass]="isLock ? 'active' : ''"-->
+                    <div class="device" nz-col nzSpan="24" (click)="goDeviceByType(4)">
+                        <img src="../../../assets/img/suo_zc.png" alt="">
+                    </div>
+                </div>
+                <div style="width:20%" nz-col class="device-wrapper">
+                    <!-- (click)="changeType('isSmoke')" [ngClass]="isSmoke ? 'active' : ''"-->
+                    <div class="device" nz-col nzSpan="24" (click)="goDeviceByType(1)">
+                        <img src="../../../assets/img/smoke_zc.png" alt="">
+                    </div>
+                </div>
+                <div style="width:20%" nz-col class="device-wrapper">
+                    <!-- (click)="changeType('isDoor')" [ngClass]="isDoor ? 'active' : ''"-->
+                    <div class="device" nz-col nzSpan="24" (click)="goDeviceByType(3)">
+                        <img src="../../../assets/img/mc_zc.png" alt="">
+                    </div>
+                </div>
+                <div style="width:20%" nz-col class="device-wrapper">
+                    <!-- (click)="changeType('isMonitor')" [ngClass]="isMonitor ? 'active' : ''"-->
+                    <div class="device" nz-col nzSpan="24" (click)="goDeviceByType(5)">
+                        <img src="../../../assets/img/dljcy_zc.png" alt="">
+                    </div>
+                </div>   
+            </div>
+            <div class="device-num-gorup">
+                <div style="width: 20%" nz-col class="device-wrapper device-num">
+                    <div nz-col nzSpan="24" class="device-num">{{mapInfo.cover_num}}</div>
+                </div>
+                <div style="width: 20%" nz-col class="device-wrapper device-num">
+                    <div nz-col nzSpan="24" class="device-num">{{mapInfo.lock_num}}</div>
+                </div>
+                <div style="width: 20%" nz-col class="device-wrapper device-num">
+                    <div nz-col nzSpan="24" class="device-num">{{mapInfo.smoke_num}}</div>
+                </div>
+                <div style="width: 20%" nz-col class="device-wrapper device-num">
+                    <div nz-col nzSpan="24" class="device-num">{{mapInfo.door_num}}</div>
+                </div>
+                <div style="width: 20%" nz-col class="device-wrapper device-num">
+                    <div nz-col nzSpan="24" class="device-num">{{mapInfo.check_num}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-middle">
+            <!-- <div class="filter-title">设备状态</div> -->
+            <div nz-row nzGutter="16" class="status-btn-group">
+                <div nz-col nzSpan="6">
+                    <!-- (click)="changeStatus('isNormal')" [ngClass]="isNormal ? 'active' : ''"-->
+                    <div nz-col nzSpan="24" class="text-center status-btn" (click)="goDeviceByStatus('normal')">正常</div>
+                </div>
+                <div nz-col nzSpan="6">
+                    <!-- (click)="changeStatus('isWarning')"  [ngClass]="isWarning ? 'active' : ''"-->
+                    <div nz-col nzSpan="24" class="text-center status-btn" (click)="goDeviceByStatus('warning')">告警</div>
+                </div>
+                <div nz-col nzSpan="6">
+                    <!-- (click)="changeStatus('isOutLine')"  [ngClass]="isOutLine ? 'active' : ''"-->
+                    <div nz-col nzSpan="24" class="text-center status-btn" (click)="goDeviceByStatus('offline')">离线</div>
+                </div>
+                <div nz-col nzSpan="6">
+                    <!-- (click)="changeStatus('isUnknow')" [ngClass]="isUnknow ? 'active' : ''"-->
+                    <div nz-col nzSpan="24" class="text-center status-btn" (click)="goDeviceByStatus('unknow')">未知</div>
+                </div>
+            </div>
+            <div nz-row nzGutter="16" class="status-num-group">
+                <div nz-col nzSpan="6" class="text-center" class="device-num">{{mapInfo.normal_num}}</div>
+                <div nz-col nzSpan="6" class="text-center" class="device-num">{{mapInfo.warning_num}}</div>
+                <div nz-col nzSpan="6" class="text-center" class="device-num">{{mapInfo.offline_num}}</div>
+                <div nz-col nzSpan="6" class="text-center" class="device-num">{{mapInfo.unknown_num}}</div>
+            </div>
+        </div>
+        <div class="warning-list">
+            <div class="filter-title" style="margin-bottom: 5px;">告警
+                <button nz-button nzType="default" nzSize="small" class="more" [routerLink]="['/work']">更多</button>
+            </div>
+            <div class="warning-content" *ngFor="let item of warningList;let i = index;" [routerLink]="['/work/detail',item.id]">{{item.content}}</div>
+        </div>
+    </div>
+</div>

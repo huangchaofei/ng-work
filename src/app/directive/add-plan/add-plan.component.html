@@ -1,0 +1,71 @@
+<div nz-row>
+    <!-- <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">设备名称:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <span>{{singleDevice.device_name}}</span>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">设&nbsp;&nbsp;备&nbsp;&nbsp;号:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <span>{{singleDevice.device_number}}</span>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">设备类型:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <span>{{singleDevice.device_type_name}}</span>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">备&nbsp;&nbsp;&nbsp;&nbsp;  注:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <span>{{singleDevice.device_remarks}}</span>
+        </div>
+    </div> -->
+    <!-- <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">心跳间隔:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <input type="number" 
+                   nz-input style="width: 200px" 
+                   [(ngModel)]="singleDevice.cur_interval" 
+                   placeholder="请输入心跳间隔" min="0"
+                   (keyup)="changeInterval($event)">
+            <span>小时</span>
+        </div>
+    </div> -->
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">开启推送:</label>
+        <div nz-col [nzSm]="14" [nzXs]="24" class="item-content">
+            <label nz-checkbox [(ngModel)]="singleDevice.open_push"></label>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" *ngIf="!singleDevice.open_push" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">开启方式:</label>
+        <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+            <nz-select style="width: 100%;"  [(ngModel)]="singleDevice.open_type">
+                <nz-option [nzValue]="item.value" [nzLabel]="item.name" *ngFor="let item of pushconfigs"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">推送起始时间:</label>
+        <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+            <nz-select style="width: 100%;"  [(ngModel)]="singleDevice.push_st">
+                <nz-option [nzValue]="item.value" [nzLabel]="item.label" *ngFor="let item of date"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="from-group">
+        <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">推送截止时间:</label>
+        <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+            <nz-select style="width: 100%;"  [(ngModel)]="singleDevice.push_et">
+                <nz-option [nzValue]="item.value" [nzLabel]="item.label" *ngFor="let item of date"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+    <div nz-col [nzXl]="24" class="footer">
+        <button type="button" nz-button nzType="primary" class="pull-right" (click)="addWorkPlan()">确认</button>
+        <button type="button" nz-button nzType="default" class="pull-right" style="margin-right:10px;" (click)="cancleDevice()">取消</button>
+    </div>
+</div>

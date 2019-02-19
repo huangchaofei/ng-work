@@ -1,0 +1,79 @@
+<div class="page">
+    <div class="chart">
+        <div id="c2" [hidden]="assign"></div>
+        <div *ngIf="assign">
+            <p class="title">已选设备</p>
+            <nz-table #basicTable [nzData]="chooseStationList">
+                <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>单位名称</th>
+                        <th>联系人</th>
+                        <th>详细地址</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of chooseStationList">
+                        <td>{{data.name}}</td>
+                        <td>{{data.enterprise_name}}</td>
+                        <td>{{data.contacts}}</td>
+                        <td>{{data.address}}</td>
+                        <td>
+                            <button type="button" nz-button nzType="default" nzSize="small" (click)="deleteChoose(data)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+    <div nz-row style="margin:15px 0;">
+        <div class="search-left" nz-col nzSm="14">
+            选择所属:
+            <nz-select style="width:160px;" nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="left_systemUserId" (ngModelChange)="changeSystemUser($event)">
+                <nz-option *ngFor="let item of systemUser_list" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </nz-select>
+            <input type="text" nz-input placeholder="输入设备号" [(ngModel)]="info.query" style="width:200px;margin-left:15px;" (ngModelChange)="deviceNumberChange()">
+        </div>
+        <div nz-col nzSm="10" *ngIf="assign">
+            分配给:
+            <nz-select style="width: 200px;" nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="right_systemUserId">
+                <nz-option *ngFor="let item of right_systemUser_list" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </nz-select>
+            <button type="button" nz-button nzType="primary" class="pull-right" (click)="confirm()">确定</button>
+            <button type="button" nz-button nzType="default" class="pull-right" (click)="cancel()" style="margin-right: 10px;">取消</button>
+        </div>
+        <div nz-col nzSm="10" *ngIf="!assign">
+            <button type="button" nz-button nzType="primary" class="pull-right" (click)="assignDevice()">分配设备</button>
+        </div>
+    </div>
+    <div>
+        <nz-table #deviceTable [nzData]="device_list"
+                                  [nzPageSize]="20" 
+                                  [nzTotal]="info.total" 
+                                  [nzFrontPagination]="false" 
+                                  (nzPageIndexChange)="changePage($event)"
+                                  [nzLoading]="info.loading">
+                <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>单位名称</th>
+                        <th>联系人</th>
+                        <th>详细地址</th>
+                        <th *ngIf="assign">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of deviceTable.data">
+                        <td>{{data.name}}</td>
+                        <td>{{data.enterprise_name}}</td>
+                        <td>{{data.contacts}}</td>
+                        <td>{{data.address}}</td>
+                        <td *ngIf="assign">
+                            <label nz-checkbox [(ngModel)]="data.checked" (ngModelChange)="changeChecked($event,data)"></label>
+                        </td>
+                    </tr>
+                </tbody>
+        </nz-table>
+    </div>
+</div>

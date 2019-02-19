@@ -1,0 +1,81 @@
+<!-- 公司选择 -->
+<div *ngIf="type == 'enterprise'">
+        <div class="input-group">
+          <div class="form-control" style="height: 32px;">
+              <span *ngFor="let ent of enterprises" style="font-size:12px;overflow:hidden" [hidden]="ent.id != enterprise.parent_id">{{ent.name}}</span>
+          </div>
+          <span class="input-group-btn">
+              <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseEnterprise()">选择</button>
+          </span>
+      </div>
+      <nz-modal [(nzVisible)]="isVisible" nzTitle="选择归属单位" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter">
+          <nz-radio-group [(ngModel)]="enterprise.parent_id" (ngModelChange)="changeEnterpriseId($event)">
+              <label nz-radio *ngFor="let ent of enterprises" nzValue="{{ent.id}}" [ngStyle]="style" class="frogEnterprise-level-{{ent.level}}">{{ent.name}}</label>
+        </nz-radio-group>
+        <ng-template #modalFooter>
+          <button nz-button nzType="default" (click)="cancel()">取消</button>
+          <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+        </ng-template>
+      </nz-modal>
+</div>
+<!-- 站点选择 -->
+<div *ngIf="type == 'station'">
+    <div class="input-group">
+        <div class="form-control" style="height: 32px;">
+            <span *ngFor="let sta of stations" style="font-size:12px;overflow:hidden" [hidden]="sta.id != station_id">{{sta.name}}</span>
+        </div>
+        <span class="input-group-btn">
+            <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseStation()">选择</button>
+        </span>
+    </div>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="选择归属设备组" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter">
+        <nz-radio-group [(ngModel)]="station_id" (ngModelChange)="changeStationId($event)">
+            <label nz-radio *ngFor="let station of stations" nzValue="{{station.id}}" [ngStyle]="style" class="frogEnterprise-level-{{station.id}}">{{station.name}}</label>
+      </nz-radio-group>
+      <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="cancel()">取消</button>
+        <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+      </ng-template>
+    </nz-modal>
+</div>
+<!-- 站点选择只要id -->
+<div *ngIf="type == 'onlyStationId'">
+    <div class="input-group">
+        <div class="form-control" style="height: 32px;">
+            <span *ngFor="let sta of stations" style="font-size:12px;overflow:hidden" [hidden]="sta.id != station_id">{{sta.name}}</span>
+        </div>
+        <span class="input-group-btn">
+            <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseStation()">选择</button>
+        </span>
+    </div>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="选择归属设备组" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter">
+        <nz-radio-group [(ngModel)]="station_id" (ngModelChange)="changeStationIdOnlyId($event)">
+            <label nz-radio *ngFor="let station of stations" nzValue="{{station.id}}" [ngStyle]="style" class="frogEnterprise-level-{{station.id}}">{{station.name}}</label>
+      </nz-radio-group>
+      <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="cancel()">取消</button>
+        <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+      </ng-template>
+    </nz-modal>
+</div>
+<!-- 系统用户组添加编辑 -->
+<!-- 公司选择 -->
+<div *ngIf="type == 'systemUserGroup'">
+        <div class="input-group">
+          <div class="form-control" style="height: 32px;">
+              <span *ngFor="let ent of enterprises" style="font-size:12px;overflow:hidden" [hidden]="ent.id != enterprise.parent_id">{{ent.name}}</span>
+          </div>
+          <span class="input-group-btn">
+              <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseEnterprise()">选择</button>
+          </span>
+      </div>
+      <nz-modal [(nzVisible)]="isVisible" nzTitle="选择归属单位" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter">
+          <nz-radio-group [(ngModel)]="enterprise.parent_id" (ngModelChange)="changeEnterpriseId($event)">
+              <label nz-radio *ngFor="let ent of enterprises" nzValue="{{ent.id}}" [ngStyle]="style" class="frogEnterprise-level-{{ent.level}}">{{ent.name}}</label>
+        </nz-radio-group>
+        <ng-template #modalFooter>
+          <button nz-button nzType="default" (click)="cancel()">取消</button>
+          <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+        </ng-template>
+      </nz-modal>
+</div>

@@ -1,0 +1,76 @@
+.index-header{
+    display: flex;
+    justify-content: space-between;
+}
+.index-item-left{
+    background: linear-gradient(-45deg, transparent 81px, #58a 0) right,
+    linear-gradient(45deg, transparent 15px, #655 0) left;
+    text-align: right;
+    margin: 20px 15px;
+    padding: 20px;
+    flex: 1;
+}
+.index-item-right{
+    background: linear-gradient(45deg, transparent 81px, #58a 0) right,
+    linear-gradient(-45deg, transparent 15px, #655 0) left;
+    text-align: left;
+    margin: 20px 15px;
+    padding: 20px;
+    flex: 1;
+}
+.font34{
+    font-size: 34px;
+    margin-bottom: 0!important;
+    color: #fff;
+}
+.font16{
+    font-size: 16px;
+    margin-bottom: 0 !important;
+    color: #fff;
+}
+.index-node{
+    padding: 20px;
+    background-color: #fff;
+    margin: 5px 15px 20px 15px;
+}
+.index-title{
+    color: black;
+    font-size: 18px;
+}
+#map{
+    width: 100%;
+    height:450px;
+}
+.index-device{
+    /*display: flex;*/
+    margin: 5px 15px 20px 15px;
+}
+.index-device-type{
+    /*flex: 1;*/
+    /*width: 0;*/
+    background-color: #fff;
+    /*padding: 20px;*/
+}
+.index-device-num {
+    /*flex: 1;*/
+    /*width: 0;*/
+    background-color: #fff;
+    /*padding: 20px;*/
+}
+.index-warning{
+    /*padding: 20px;*/
+    background-color: #fff;
+    margin: 5px 15px 20px 15px;
+}
+.index-title{
+    padding: 20px;
+}
+#c1,#c2{
+    /*width: 40vw;*/
+}
+#c3{
+    width: 100%;
+}
+/*#c3 canvas{
+    width: 100%;
+}*/

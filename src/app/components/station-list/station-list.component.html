@@ -1,0 +1,108 @@
+<nz-breadcrumb style="margin:16px 0;">
+  <nz-breadcrumb-item>管理中心</nz-breadcrumb-item>
+  <nz-breadcrumb-item>设备组列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<div style="padding:20px; background: #fff;">
+  <div nz-row>
+    <!-- <div nz-col nzSpan="24" class="filter-group"> -->
+      <!-- <div nz-col nzSpan="8" class="filter-input">
+        <span nz-col nzSpan="4">站点状态</span>
+        <div nz-col nzSpan="12">
+          <nz-select [(ngModel)]="info.status" style="width: 100%;">
+            <nz-option nzValue="0" nzLabel="全部"></nz-option>
+            <nz-option nzValue="1" nzLabel="使用中"></nz-option>
+            <nz-option nzValue="2" nzLabel="测试中"></nz-option>
+          </nz-select>
+        </div>
+      </div> -->
+      <div class="filter-group" nz-col nzSm="0" nzXl="0">
+          <span nz-col nzSpan="6">所在城市</span>
+          <div nz-col nzSpan="15">
+            <app-choose-address></app-choose-address>
+          </div>
+      </div>
+      <div class="filter-group" nz-col nzSm="24" nzMd="12" nzXl="8">
+            <span nz-col nzSpan="6">设备组名称</span>
+            <div nz-col nzSpan="15">
+              <app-fuzzy-search type="station" [(ngModel)]="station_item"></app-fuzzy-search>
+            </div>
+      </div>
+      <div class="filter-group" nz-col nzSm="24" nzMd="12" nzXl="8">
+            <span nz-col nzSpan="6">单位名称</span>
+            <div nz-col nzSpan="15">
+                <app-fuzzy-search type="enterprise" [(ngModel)]="enterprise_item"></app-fuzzy-search>
+            </div>
+      </div>
+    <button nz-button nzType="primary" class="pull-right clearfix" (click)="search()" *ngIf="auth.indexOf(312296149) !== -1">查询</button>
+  </div>
+
+</div>
+<div style="margin-top:15px;background: #fff;padding: 24px; min-height: 360px;">
+    <div nz-row style="margin-bottom: 15px;" *ngIf="auth.indexOf(328369184) !== -1">
+        <div nz-col>
+            <a [routerLink]="['./add']" class="pull-right clearfix">
+                <button nz-button nzType="default">添加</button>
+            </a>
+        </div>
+    </div>
+  <div nz-row>
+    <nz-table 
+          #basicTable [nzData]="station_list" 
+          [nzPageSize]="20" 
+          [nzTotal]="info.total" 
+          [nzFrontPagination]="false" 
+          (nzPageIndexChange)="changePage($event)"
+          [nzLoading]="info.loading"
+          >
+          <thead>
+            <tr>
+              <th>设备组名称</th>
+              <th>归属单位</th>
+              <th>省份</th>
+              <th>市</th>
+              <th>区县</th>
+              <th>详细地址</th>
+              <th>投入使用时间</th>
+              <!-- *ngIf="auth.indexOf(300570360) !== -1 || auth.indexOf(385657318) !== -1" -->
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{data.name}}</td>
+              <td>{{data.enterprise_name}}</td>
+              <td>{{data.province}}</td>
+              <td>{{data.city}}</td>
+              <td>{{data.district}}</td>
+              <td>{{data.address}}</td>
+              <td>{{data.open_forbin_date}}</td>
+              <td>
+                <button 
+                        type="button" 
+                        nz-button 
+                        nzType="default" 
+                        nzSize="small"
+                        [routerLink]="['/station/detail',data.id]"
+                        >详情</button>
+                 <button type="button" 
+                        nz-button nzType="primary" 
+                        nzSize="small"
+                        [routerLink] = "['/station/edit',data.id]"
+                        style="margin-left: 5px"
+                        *ngIf="auth.indexOf(300570360) !== -1"
+                        >编辑</button>
+                 <button type="button" 
+                        nz-button nzType="danger" 
+                        nzSize="small"
+                        nz-popconfirm
+                        nzTitle="确认要删除吗?"
+                        (nzOnConfirm)="delete(data)"
+                        *ngIf="auth.indexOf(385657318) !== -1"
+                        style="margin-left: 5px" 
+                        >删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+  </div>
+</div>

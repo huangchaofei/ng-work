@@ -1,0 +1,61 @@
+<div class="page">
+    <nz-spin [nzSpinning]="isSpinning">
+        <div nz-row>
+            <div nz-col nzSm="24">
+                <label nz-col class="label-left pull-left">告警ID:</label>
+                <label nz-col nzLg="8" nzXL="4" class="label-right">{{Detail.id}}</label>
+            </div>
+            <div nz-col nzSm="24">
+                <label nz-col class="label-left pull-left">设备名称:</label>
+                <label nz-col nzLg="8" nzXL="4" class="label-right">{{Detail.device_name}}</label>
+            </div>
+            <div nz-col nzSm="24">
+                <label nz-col class="label-left pull-left">设备编号:</label>
+                <label nz-col nzLg="8" nzXL="4" class="label-right">{{Detail.device_number}}</label>
+            </div>
+            <div nz-col nzSm="24">
+                <label nz-col class="label-left pull-left">故障描述:</label>
+                <label nz-col nzLg="8" nzXL="4" class="label-right color-red">{{Detail.warning_content}}</label>
+            </div>
+            <div nz-col nzSm="24">
+                <label nz-col class="label-left pull-left">设备位置:</label>
+                <div id="map">
+                    
+                </div>
+            </div>
+            <div nz-col nzSm="24">
+                <p class="title">最近维护记录</p>
+                <div>
+                    <nz-timeline>
+                      <nz-timeline-item *ngFor="let item of Detail.records">
+                          <p class="date">{{item.created_at}}</p>
+                          <p>状态: {{item.type_name}}</p>
+                          <p>处理人: {{item.user_name}}</p>
+                          <p>日志: {{item.deal_remark}}</p>
+                      </nz-timeline-item>
+                    </nz-timeline>
+                </div>
+            </div>
+            <div>
+                <button nz-button type="button" nzType="primary" *ngIf="Detail.warn_status == 1" (click)="deal()">人工处理</button>
+            </div>
+        </div>
+    </nz-spin>
+</div>
+<!-- 处理 -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="添加维护日志" (nzOnCancel)="handleCancel(dealForm)" (nzOnOk)="handleOk(dealForm)">
+    <form #dealForm="ngForm" nz-form>
+        <div nz-row>
+            <div nz-col>
+                <nz-form-item>
+                    <nz-form-label nz-col nzXl="2" class="add-form-name">描述</nz-form-label>
+                    <nz-form-control nz-col nzXl="22">
+                        <!-- <text type="text" nz-input style="width: 100%;" ngModel name="deal_remark" #dealRemark="ngModel"> -->
+                        <textarea cols="30" rows="10" nz-input style="width: 100%;" ngModel name="deal_remark" #dealRemark="ngModel"></textarea>
+                        <!-- <nz-form-explain *ngIf="dealRemark.dirty && dealRemark.errors">请输入描述</nz-form-explain> -->
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</nz-modal>

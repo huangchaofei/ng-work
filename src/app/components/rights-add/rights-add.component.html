@@ -1,0 +1,59 @@
+<div class="page">
+    <div nz-row style="margin-top: 10%;">
+        <div nz-col nzSm="24" class="add-form">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">权限级别</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <nz-select style="width: 100%;" [(ngModel)]="info.level" (ngModelChange)="levelChange($event)">
+                    <nz-option nzValue="1" nzLabel="一级"></nz-option>
+                    <nz-option nzValue="2" nzLabel="二级"></nz-option>
+                    <nz-option nzValue="3" nzLabel="三级"></nz-option>
+                    <nz-option nzValue="4" nzLabel="四级"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="add-form" *ngIf="info.level != '1'">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">上级权限</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <nz-select style="width: 100%;" [(ngModel)]="info.parent_id">
+                    <nz-option *ngFor="let item of parent_list" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="add-form">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">权限类型</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <nz-select style="width: 100%;" [(ngModel)]="info.module_type">
+                    <nz-option nzValue="1" nzLabel="菜单" *ngIf="info.level != '4'"></nz-option>
+                    <nz-option nzValue="2" nzLabel="按钮" *ngIf="info.level == '4'"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="add-form">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">权限计费参数</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <nz-select style="width: 100%;" [(ngModel)]="info.purchase_type">
+                    <nz-option nzValue="0" nzLabel="全部"></nz-option>
+                    <nz-option nzValue="1" nzLabel="免费"></nz-option>
+                    <nz-option nzValue="2" nzLabel="收费"></nz-option>
+                    <nz-option nzValue="3" nzLabel="试用"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="add-form">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">权限名称</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <input type="text" nz-input [(ngModel)]="info.name" style="width: 100%;" placeholder="请输入权限名称">
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="add-form">
+            <label nz-col nzLg="8" nzXL="4" class="text-right add-label">权限标识</label>
+            <div nz-col nz-col nzLg="12" nzXl="12">
+                <input type="text" nz-input [(ngModel)]="info.key" placeholder="请输入权限标识">
+            </div>
+        </div>
+        <div nz-col nzSm="24" class="text-center add-form">
+            <button nz-button nzType="default" [routerLink]="['/index']">取消</button>
+            <button nz-button nzType="primary" style="margin-left:15px;" (click)="confirm()">确认</button>
+        </div>
+    </div>
+</div>

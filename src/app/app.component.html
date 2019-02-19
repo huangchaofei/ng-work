@@ -1,0 +1,83 @@
+<nz-layout class="layout">
+  <nz-header class="index-header">
+    <div class="logo"></div>
+    <h2 class="index-name">蜂巢智网物联网平台</h2>
+  </nz-header>
+  <nz-layout>
+    <nz-sider [nzWidth]="260" nzCollapsible [(nzCollapsed)]="isCollapsed" class="index-silder">
+      <ul nz-menu [nzMode]="'inline'" style="height:100%;background-color: transparent;border-right: none;padding: 0 10px;">
+        <li nz-submenu [(nzOpen)]="openMap.sub1" (nzOpenChange)="openHandler('sub1')" class="first-menu">
+          <span title>首页</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['./index']">首页</a>
+            </li>
+          </ul>
+        </li>
+		<li nz-submenu [(nzOpen)]="openMap.sub2" (nzOpenChange)="openHandler('sub2')" class="first-menu">
+          <span title>终端</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['./station]">区域管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['./device']">设备详情</a>
+            </li>
+            <!-- <li nz-menu-item>
+              <a [routerLink]="['./device/wellCover']">井盖管理</a>
+            </li> -->
+            <li nz-menu-item>
+              <a [routerLink]="['./device/lock']">智能锁管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['./device/smoke']">烟感管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['./device/door']">门磁管理</a>
+            </li>
+          </ul>
+        </li>
+		<li nz-submenu [(nzOpen)]="openMap.sub3" (nzOpenChange)="openHandler('sub3')" class="first-menu">
+          <span title>工单</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['./work']">工单管理</a>
+            </li>
+            <li nz-menu-item>
+				<a [routerLink]="['./work/Order']">工单统计</a>
+			</li>
+          </ul>
+        </li>
+		<li nz-submenu [(nzOpen)]="openMap.sub4" (nzOpenChange)="openHandler('sub4')" class="first-menu">
+          <span title>日志</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['./log']">系统日志</a>
+            </li>
+          </ul>
+        </li>
+		<li nz-submenu [(nzOpen)]="openMap.sub5" (nzOpenChange)="openHandler('sub5')" class="first-menu">
+            <span title>统计</span>
+            <ul>
+                <li nz-menu-item>
+                  <a [routerLink]="['./statistics']">告警统计</a>
+                </li>
+                <li nz-menu-item>工作统计</li>
+            </ul>
+        </li>
+		<li nz-submenu [(nzOpen)]="openMap.sub6" (nzOpenChange)="openHandler('sub6')" class="first-menu">
+			<span title>设置</span>
+			<ul>
+				<li nz-menu-item>人员管理</li>
+				<li nz-menu-item>设备管理</li>
+			</ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-content style="background:#fff; padding: 24px; min-height: 280px;height: 100%">
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

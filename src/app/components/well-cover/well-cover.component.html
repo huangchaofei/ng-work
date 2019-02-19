@@ -1,0 +1,208 @@
+<div class="page">
+  <div class="device-top">
+     <div class="device-top-left">
+        <div><span class="top-device-status" (click)="changeStatus(0)">设备总数:{{deviceDetail.total}}</span></div>
+        <div><span class="top-device-status" (click)="changeStatus(2)">正常:{{deviceDetail.normal}}</span></div>
+        <div><span class="top-device-status" (click)="changeStatus(5)">工作中:{{deviceDetail.working}}</span></div>
+        <div><span class="top-device-status" (click)="changeStatus(3)">告警:{{deviceDetail.warning}}</span></div>
+        <div><span class="top-device-status" (click)="changeStatus(6)">离线:{{deviceDetail.offline}}</span></div>
+        <div><span class="top-device-status" (click)="changeStatus(1)">未知:{{deviceDetail.unknown}}</span></div>
+     </div>
+     <div class="device-top-right">
+      <button nz-button nzType="primary" nzSize="small" (click)="showAllDevice()">显示所有设备</button>
+     </div>
+  </div>
+  <div class="device-container">
+    <div class="container-left">
+      <div class="container-top">
+        <input type="text" nz-input nzSize="default" placeholder="请输入名称或编号" style="width:260px;" [(ngModel)]="info.query">
+        <button nz-button nzType="primary" nzSize="small" (click)="clear()">清空</button>
+        <button nz-button nzType="default" nzSize="small" (click)="changeStatus(0)" *ngIf="auth.indexOf(175849342) !== -1">搜索</button>
+        <button nz-button nzType="primary" nzSize="small" class="addBtn" [routerLink]="['/device/add',2]" *ngIf="auth.indexOf(188094106) !== -1">添加</button>
+      </div>
+      <div class="device-table">
+        <nz-table #basicTable [nzData]="device_list"
+                    [nzPageSize]="20" 
+                        [nzTotal]="info.total" 
+                        [nzFrontPagination]="false" 
+                        (nzPageIndexChange)="changePage($event)"
+                        [nzLoading]="info.loading">
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>出厂编号</th>
+              <th>备注</th>
+              <th>类型</th>
+              <th>型号</th>
+              <th>状态</th>
+              <th *ngIf="auth.indexOf(199235301) !== -1 || auth.indexOf(454765506) !== -1">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data" (click)="mapClick(data)">
+              <td>{{data.device_name}}</td>
+              <td>{{data.device_number}}</td>
+              <td>{{data.provider}}</td>
+              <td>{{data.device_type_name}}</td>
+              <td>{{data.device_remarks}}</td>
+              <td>{{data.status_name}}</td>
+              <td class="operate">
+                <button type="button" 
+                        nz-button nzType="primary" nzSize="small" (click)="operateDevice(data)"
+                        *ngIf="auth.indexOf(199235301) !== -1"
+                        >编辑</button>
+                <button type="button" 
+                    nz-button 
+                    nzType="danger" 
+                    nzSize="small" 
+                    nz-popconfirm
+                    nzTitle="确认要删除吗?"
+                    (nzOnConfirm)="deleteDevice(data)"
+                    *ngIf="auth.indexOf(454765506) !== -1"
+                    >删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div class="container-right">
+      <div id="map">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 设备操作模态框 -->
+<nz-modal [(nzVisible)]="isOperate" 
+      nzTitle="操作" 
+      [nzBodyStyle] = "bodyStyle"
+        nzWidth = '1000px'
+        [nzFooter]="null"
+        (nzOnCancel) = "operateCancel()"
+      >
+    <nz-tabset>
+        <nz-tab nzTitle="编辑设备">
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">设备名称:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <input type="text" nz-input [(ngModel)]="singleDevice.device_name">
+                </div>
+            </div>
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">设备号:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                        <input type="text" nz-input [(ngModel)]="singleDevice.number_define">
+                </div>
+            </div>
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">归属设备组:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <app-form-choose-enterprise [type]="'station'" [(ngModel)]="singleDevice.station_id"></app-form-choose-enterprise>
+                </div>
+            </div>
+            <!-- <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">供应商:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <nz-select style="width: 100%;"  [(ngModel)]="singleDevice.manufacturer_id">
+                        <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of manufacturer"></nz-option>
+                    </nz-select>
+                </div>
+            </div> -->
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">投入使用时间:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <nz-date-picker [(ngModel)]="singleDevice.open_used_at" nzPlaceHolder="请选择投入使用时间" style="width: 100%;"></nz-date-picker>
+                </div>
+            </div>
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">型号:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <input type="text" nz-input [(ngModel)]="singleDevice.device_remarks" placeholder="请输入型号">
+                </div>
+            </div>
+            <div nz-col [nzXl]="24">
+                <label nz-col [nzSm]="3" [nzXs]="24" class="item-label">备注:</label>
+                <div nz-col [nzSm]="6" [nzXs]="24" class="item-content">
+                    <input type="text" nz-input [(ngModel)]="singleDevice.provider" placeholder="请输入备注">
+                </div>
+            </div>
+            <div nz-col [nzXl]="24" class="footer">
+              <button type="button" nz-button nzType="primary" class="pull-right" (click)="confirmEditDevice()">确认</button>
+              <button type="button" nz-button nzType="default" class="pull-right" style="margin-right:10px;" (click)="cancleDevice()">取消</button>
+            </div>
+        </nz-tab>
+        <nz-tab nzTitle="添加工作计划">
+            <app-add-plan [singleDevice]="singleDevice" (close)="planSuccess($event)"></app-add-plan>
+        </nz-tab>
+        <nz-tab nzTitle="心跳记录">
+            <div style="display: flex;">
+                <div class="heart-left" style="height: 500px;">
+                    <!-- <h4>心跳记录</h4> -->
+                    <nz-table #heartTable [nzData]="heartList"
+                                      [nzFrontPagination]="false"
+                                      [nzSize]="'small'"
+                                      [nzShowPagination]="false"
+                                      >
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>温度(°C)</th>
+                            <th>光照度(lux)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of heartTable.data">
+                            <td>{{data.created_at}}</td>
+                            <td>{{data.temperature}}</td>
+                            <td>{{data.beam}}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+                </div>
+                <!-- <div class="heart-right">
+                    <h4>历史数据</h4>
+                    <div id="chart">
+                        
+                    </div>
+                </div> -->
+            </div>
+        </nz-tab>
+        <nz-tab nzTitle="告警日志">
+                <nz-table #warningTable [nzData]="warningList"
+                                      [nzFrontPagination]="false"
+                                      [nzSize]="'small'"
+                                      [nzShowPagination]="false"
+                                      >
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>告警详情</th>
+                            <th>工单处理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of warningTable.data">
+                            <td>{{data.created_at}}</td>
+                            <td>{{data.fault_type_name}}</td>
+                            <td>
+                                <button nz-button nzType="primary" nzSize="small" [routerLink]="['/work/detail',data.id]">详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+        </nz-tab>
+    </nz-tabset>
+</nz-modal>
+<nz-modal [(nzVisible)]="bigMapVisible" 
+        nzTitle="显示全部设备" 
+        (nzOnCancel)="bigCancel()" 
+        [nzFooter]="null"
+        [nzBodyStyle] = "bigMapStyle"
+        nzWidth="1200px"
+        [nzMaskClosable]="false"
+      >
+    <div id="bigMap" style="height:60vh;">
+      
+    </div>
+</nz-modal>

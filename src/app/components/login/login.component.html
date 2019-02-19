@@ -1,0 +1,26 @@
+<div style="width: 100%;height: 100%;background-color: #2F4050;">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <div class="title">欢迎登录蜂巢智网</div>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-user">
+          <input type="text" nz-input formControlName="userName" placeholder="用户名">
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors" autocomplete="on">请输入用户名</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-lock">
+          <input type="password" nz-input formControlName="password" placeholder="密码" autocomplete="on">
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

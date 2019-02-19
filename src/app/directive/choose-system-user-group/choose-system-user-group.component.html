@@ -1,0 +1,18 @@
+<div class="input-group">
+    <div class="form-control" style="height: 32px;">
+        <span *ngFor="let group of groups" style="font-size:12px;overflow:hidden" [hidden]="group.id != group_id">{{group.name}}</span>
+    </div>
+    <span class="input-group-btn">
+        <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseGroup()">选择</button>
+    </span>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="选择系统用户组" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter"
+  nzWidth="650">
+    <nz-radio-group [(ngModel)]="group_id" (ngModelChange)="changeGroupId($event)" style="width: 100%;">
+        <label nz-radio *ngFor="let group of groups" nzValue="{{group.id}}" [ngStyle]="style" class="systemUser">{{group.name}}</label>
+  </nz-radio-group>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="cancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+  </ng-template>
+</nz-modal>

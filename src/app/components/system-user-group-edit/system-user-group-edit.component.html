@@ -1,0 +1,60 @@
+<div class="page" nz-row>
+    <div style="padding: 10px;">
+        <div nz-row [nzGutter]="16" class="add-form">
+            <label nz-col nzLg="4" nzXL="4" class="text-left add-label">系统用户组名称</label>
+            <div nz-col nzLg="9" nzXl="8" nzXXl="6">
+                <input type="text" nz-input placeholder="请输入系统用户组名称" [(ngModel)]="info.name">
+            </div>
+            <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+        </div>
+        <div nz-row [nzGutter]="16" class="add-form">
+            <label nz-col nzLg="4" nzXL="4" class="text-left add-label">归属单位</label>
+            <div nz-col nzLg="9" nzXl="8" nzXXl="6">
+                <app-form-choose-enterprise [(ngModel)]="info.enterprise_id" [type]="'systemUserGroup'"></app-form-choose-enterprise>
+            </div>
+            <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+        </div>
+        <div nz-row [nzGutter]="16" class="add-form">
+            <label nz-col nzLg="4" nzXL="4" class="text-left add-label">备注</label>
+            <div nz-col nzLg="9" nzXl="8" nzXXl="6">
+                <input type="text" nz-input placeholder="请输入备注" [(ngModel)]="info.remarks">
+            </div>
+            <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+            <div nz-col nzLg="10" nzXl="9" class="text-center">
+                <a [routerLink]="['/systemUserGroup']">
+                    <button nz-button nzType="default">取消</button>
+                </a>
+                <button nz-button nzType="primary" type="button" class="submit-right" style="margin-left: 5px;"(click)="submit()">确认</button>
+            </div>
+        </div>
+        <!-- <div nz-row>
+            <div nz-col class="text-center">
+                <a [routerLink]="['/systemUserGroup']">
+                    <button nz-button nzType="default">取消</button>
+                </a>
+                <button nz-button nzType="primary" type="button" class="submit-right" style="margin-left: 5px;"(click)="submit()">确认</button>
+            </div>
+        </div> -->
+    </div>
+    <div nz-row style="display: flex;justify-content: space-between;align-items: flex-start;">
+        <div *ngFor="let item of auth;let i = index;" class="module" nz-col nzSm="4" class="level_one">
+            <div class="title">
+                <label nz-checkbox [(ngModel)]="item.checked" (ngModelChange)="levelOneChange($event,item)"
+                class="level_one_checbox"></label>
+                {{item.name}}
+            </div>
+            <div *ngFor="let level_two of item.child" class="level_two">
+                <label nz-checkbox [(ngModel)]="level_two.checked" (ngModelChange)="levelTwoChange($event,level_two)">{{level_two.name}}</label>
+                <div *ngFor="let level_four of level_two.buttonRights" class="level_four">
+                    <label nz-checkbox [(ngModel)]="level_four.checked" (ngModelChange)="levelFourChange($event,level_four)">{{level_four.name}}</label>
+                </div>
+                <div *ngFor="let level_three of level_two.child" class="has_level_three">
+                    <label nz-checkbox [(ngModel)]="level_three.checked" (ngModelChange)="levelThreeChange($event,level_three)">{{level_three.name}}</label>
+                    <div *ngFor="let level_four_btn of level_three.buttonRights" class="has_level_three_btn">
+                        <label nz-checkbox [(ngModel)]="level_four_btn.checked" (ngModelChange)="levelFourChange($event,level_four_btn)">{{level_four_btn.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

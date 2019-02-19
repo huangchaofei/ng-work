@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ng-zorro-antd/src/ng-zorro-antd.css";
+.ant-table table{
+    text-align: center;
+}
+.ant-table-thead th{
+    text-align: center;
+}
+.ant-table-thead tr>th{
+    text-align: center;
+}
+.page{
+    width: 100%;
+    height: 100%;
+}
+.pull-right{
+    float: right;
+}
+.clearfix{
+    overflow: hidden;
+}
+.item-label{
+    font-weight: normal;
+    text-align: left;
+}
+.filter-group{
+    margin-bottom: 10px;
+}
+.filter-group span:first-child{
+    margin-top: 4px;
+    text-align: right;
+    margin-right: 4px;
+    width: 80px!important;
+}
+.text-center{
+    text-align: center;
+}
+.add-label{
+    padding-top: 6px;
+    font-weight: normal!important;
+    text-align: left;
+}
+.add-form{
+    margin-bottom: 15px;
+    position: relative;
+}
+.submit-right{
+    margin-left: 10px;
+}
+.add-form .ant-calendar-picker{
+    width: 100%!important;
+}
+.ant-layout-sider-trigger{
+  display: none!important;
+}
+.ant-input {
+    transition: none!important;
+}
+.device-container{
+    min-height: 750px;
+}
+.add-footer{
+    margin-top: 40px;
+}
+.device-container{
+    position: relative;
+}
+.device-table{
+    overflow-y: scroll;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 40%;
+    bottom: 0;
+}
+.container-left {
+  width: 60%;
+}
+
+.container-right {
+  width: 40%;
+  position: relative;
+}
+.red-start{
+    color: red;
+    padding-top: 6px;
+    /*position: absolute;*/
+    /*right: 0;*/
+}
+.top-device-status{
+    cursor: pointer;
+}
+:host .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    /*background: transparent;*/
+    outline: none;
+}
+::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    /*background: transparent;*/
+    outline: none;
+}
+:root .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    /*background: transparent;*/
+    outline: none;
+}
+::ng-deep .ant-menu-item:foucs{
+    outline: none!important;
+}
+::ng-deep .ant-layout-header{
+    height: 50px!important;
+    line-height: 50px!important;
+}
+:root .ant-layout-header{
+    height: 50px!important;
+    line-height: 50px!important;
+}
+:host .ant-layout-header{
+    height: 50px!important;
+    line-height: 50px!important;
+}
+
+::ng-deep .address >.ant-cascader .ant-cascader-input::-webkit-input-placeholder{
+    color:rgba(0, 0, 0, 0.65)!important;
+}
+:root .address>.ant-cascader .ant-cascader-input::-webkit-input-placeholder{
+    color:rgba(0, 0, 0, 0.65)!important;
+}
+:host .address>.ant-cascader .ant-cascader-input::-webkit-input-placeholder{
+    color:rgba(0, 0, 0, 0.65)!important;
+}
+::ng-deep .address >.ant-cascader .ant-cascader-input span{
+    color:red!important;
+}
+:root .address >.ant-cascader .ant-cascader-input span{
+    color:red!important;
+}
+:host .address >.ant-cascader .ant-cascader-input span{
+    color:red!important;
+}

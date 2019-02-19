@@ -1,0 +1,16 @@
+.page{
+    background-color: #fff;
+    padding: 50px 25px 0 25px;
+}
+.chart{
+    /*margin-top: 50px;*/
+    text-align: center;
+}
+#c2{
+    width:70vw;
+    margin: 0 auto;
+}
+.title{
+    font-size: 30px;
+    text-align: center;
+}

@@ -1,0 +1,9 @@
+:root .myArea{
+    left: -105px;
+}
+:host .myArea{
+    left: -105px;
+}
+::ng-deep .myArea{
+    left: -105px;
+}

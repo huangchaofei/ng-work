@@ -1,0 +1,12 @@
+.export{
+    text-align: right;
+}
+.content{
+    padding: 20px;
+    background-color:#ffffff;
+}
+#chart{
+    margin: 0 auto;
+    width: 800px;
+    height: 400px;
+}

@@ -1,0 +1,9 @@
+<nz-cascader
+  [(ngModel)] = "values"
+  [nzOptions]="nzOptions"
+  [nzPlaceHolder]="'区域'"
+  (nzSelect)="selectChange($event)"
+  (nzClear)="clear()"
+  [nzMenuClassName]="'myArea'"
+  style="width: 100%;">
+</nz-cascader>

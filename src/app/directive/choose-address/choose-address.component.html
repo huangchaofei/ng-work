@@ -1,0 +1,20 @@
+<div class="choose_address">
+    <nz-select nz-col nzSpan="8" nzPlaceHolder="选择省" [(ngModel)]="provinceOption" (ngModelChange)="changeProvince($event)" 
+        [compareWith]="compareProvinceFn"
+        >
+        <nz-option [nzValue]="all" nzLabel="全部"></nz-option>
+        <nz-option *ngFor="let province of provinces"   [nzValue]="province" [nzLabel]="province.name" [nzDisabled]="province.disabled"></nz-option>
+    </nz-select>
+    <nz-select nz-col nzSpan="8" nzPlaceHolder="选择市" [(ngModel)]="cityOption" (ngModelChange)="changeCity($event)"
+        [compareWith]="compareCityFn"
+    >
+      <nz-option [nzValue]="all" nzLabel="全部"></nz-option>
+        <nz-option *ngFor="let city of citys" [nzValue]="city" [nzLabel]="city.name"></nz-option>
+    </nz-select>
+    <nz-select nz-col nzSpan="8" nzPlaceHolder="选择区县" [(ngModel)]="districtOption" (ngModelChange)="changeDistrict($event)"
+        [compareWith]="compareDistrictFn"
+      >
+        <nz-option [nzValue]="all" nzLabel="全部"></nz-option>
+        <nz-option *ngFor="let district of districts" [nzValue]="district" [nzLabel]="district.name"></nz-option>
+    </nz-select>
+</div>

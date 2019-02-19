@@ -1,0 +1,42 @@
+.page{
+    background-color: #fff;
+}
+.title{
+    background-color: #1ab394;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+.level_one_checbox{
+    position: absolute;
+    top: 4px;
+    left: 5px;
+}
+.level_one{
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 5px;
+    padding: 5px 0;
+    padding-top: 0;
+    /*margin: 0 5px;*/
+}
+.level_two{
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0px 5px 5px;
+    /*padding-left: 24px;*/
+}
+.has_level_three{
+    padding: 5px 0px 5px 5px;
+    margin-left: 24px;
+}
+.has_level_three_btn{
+    margin-left: 48px;
+    padding: 5px 0;
+}
+.level_four{
+    margin-left: 24px;
+    padding: 5px 0;
+}
+.submit-right{
+    margin-bottom: 50px;
+}

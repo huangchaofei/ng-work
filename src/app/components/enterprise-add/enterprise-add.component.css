@@ -1,0 +1,28 @@
+.group_input{
+    position: relative;
+}
+.group_checkbox{
+    position: absolute;
+    right: -10px;
+    top: 5px;
+}
+.downselect{
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 3;
+}
+.downselect li {
+    list-style: none;
+    padding: 6px 13px;
+    border: 1px solid #e7eaec;
+};
+.downselect li:hover {
+    background-color: red;
+    cursor: pointer;
+}
+.downselect li:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}

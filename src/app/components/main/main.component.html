@@ -1,0 +1,210 @@
+<nz-layout class="layout" style="height: 100%;">
+  <!-- <nz-header class="index-header">
+    <div class="logo"></div>
+    <h2 class="index-name">蜂巢智网</h2>
+    <nz-dropdown [nzPlacement]="'bottomLeft'" class="pull-right">
+        <button nz-button nz-dropdown>{{systemInfo.name}}</button>
+        <ul nz-menu>
+          <li nz-menu-item>
+            <a (click)="logout()">退出</a>
+            <a (click)="editPwd()">修改密码</a>
+          </li>
+        </ul>
+      </nz-dropdown>
+  </nz-header> -->
+  <nz-layout>
+    <!-- <nz-sider [nzWidth]="260" nzCollapsible [(nzCollapsed)]="isCollapsed" class="index-silder">
+      <ul nz-menu [nzMode]="'inline'" style="height:100%;background-color: transparent;border-right: none;padding: 0 10px;">
+        <li nz-submenu [(nzOpen)]="openMap.sub1" (nzOpenChange)="openHandler('sub1')" class="first-menu">
+          <span title>首页</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['/index']">首页</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [(nzOpen)]="openMap.sub2" (nzOpenChange)="openHandler('sub2')" class="first-menu">
+          <span title>管理中心</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['/enterprise']">单位管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/station']">设备组详情</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device']">设备详情</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device/wellCover']">智能节点管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device/lock']">智能锁管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device/smoke']">烟感管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device/door']">门磁管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/device/monitor']">断路监测仪管理</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [(nzOpen)]="openMap.sub3" (nzOpenChange)="openHandler('sub3')" class="first-menu">
+          <span title>工单</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['/work']">报警管理</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/work/Order']">推送管理</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [(nzOpen)]="openMap.sub4" (nzOpenChange)="openHandler('sub4')" class="first-menu">
+          <span title>日志</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['/log']">系统日志</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [(nzOpen)]="openMap.sub5" (nzOpenChange)="openHandler('sub5')" class="first-menu">
+          <span title>统计</span>
+          <ul>
+            <li nz-menu-item>
+              <a [routerLink]="['/statistics']">告警统计</a>
+            </li>
+            <li nz-menu-item>
+                <a [routerLink]="['/statistics/pushStatistics']">推送统计</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [(nzOpen)]="openMap.sub6" (nzOpenChange)="openHandler('sub6')" class="first-menu">
+          <span title>设置</span>
+          <ul>
+            <li nz-menu-item>
+                <a [routerLink]="['/systemUser']">系统用户</a>
+            </li>
+            <li nz-menu-item>
+                <a [routerLink]="['/deviceGroup']">设备组管理</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider> -->
+    <nz-sider [nzWidth]="220" nzCollapsible [(nzCollapsed)]="isCollapsed" class="index-silder">
+        <div class="logo">
+            <img src="../../../assets/img/logo-white.png" alt="">
+            <!-- 蜂巢智网 -->
+            <!-- <span class="logo-little">智联万物 合创未来</span> -->
+        </div>
+        <ul nz-menu [nzMode]="'inline'" 
+        [nzTheme]="'dark'"
+        >
+        <!--         style="height:100%;
+        margin-top: 64px;" -->
+        <!-- background-color: transparent;border-right: none;padding: 0 10px; -->
+            <li nz-menu-item [routerLink]="['/map']" [hidden]="systemInfo.id == '338021571'">
+                <i nz-icon [iconfont]="'icon-map'"></i>
+                <span class="nav-text">地图模式</span>
+            </li>
+            <li nz-submenu *ngFor="let item of one;let i = index;" [(nzOpen)]="openMap[item.sub]" (nzOpenChange)="openHandler(item.sub)" class="first-menu">
+                <span title>
+                    <!-- <i nz-icon type="user"></i> -->
+                    <i nz-icon [iconfont]="'icon-management'" *ngIf="item.key == 'manageCenterModule'"></i>
+                    <i nz-icon [iconfont]="'icon-liebiao'" *ngIf="item.key == 'workModule'"></i>
+                    <i nz-icon [iconfont]="'icon-log'" theme="outline" *ngIf="item.key == 'logModule'"></i>
+                    <i nz-icon type="setting" theme="outline" *ngIf="item.key == 'settingModule'"></i>
+                    <i nz-icon type="bar-chart" theme="outline" *ngIf="item.key == 'statisticsModule'"></i>
+                    <span class="nav-text">{{item.name}}</span>
+                </span>
+                <!-- <span title>{{item.name}}</span> -->
+                <ul>
+                  <!-- <ng-container *ngIf="item.key !== 'deviceDetailModule'"> -->
+                      <li nz-menu-item 
+                      *ngFor="let level_two of item.child" 
+                      [hidden]="(level_two.parent_id !== item.module_id) || level_two.key == 'deviceDetailModule'" 
+                      [routerLink]="[level_two.url]" >
+                            {{level_two.name}}  
+                      </li>
+                  <!-- </ng-container> -->
+                  <!-- <ng-container *ngIf="item.key == 'deviceDetailModule'"> -->
+                      <!-- 3级菜单 -->
+                      <li nz-submenu 
+                      *ngFor="let level_two of item.child" 
+                      [hidden]="(level_two.parent_id !== item.module_id) || level_two.key !== 'deviceDetailModule'">
+                          <span title>{{level_two.name}}</span>
+                          <ul>
+                              <li *ngFor="let level_three of level_two.child" 
+                              [routerLink]="[level_three.url]"
+                              [hidden]="level_three.parent_id !== level_two.module_id" 
+                              nz-menu-item>
+                                  {{level_three.name}}
+                              </li>
+                          </ul>
+                      </li>
+                  <!-- </ng-container> -->
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <!-- background:#fff -->
+      <nz-header class="index-header">
+        <!-- <div class="logo"></div> -->
+        <!-- <h2 class="index-name">蜂巢智网</h2> -->
+        <nz-dropdown [nzPlacement]="'bottomLeft'" class="pull-right">
+            <button nz-button nz-dropdown nzSize="small">{{systemInfo.name}}</button>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a (click)="logout()">退出</a>
+              </li>
+              <li nz-menu-item>
+                <a (click)="editPwd()">修改密码</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+          <div class="pull-right" style="margin-right: 15px;" [hidden]="systemInfo.id=='338021571'">
+            <button nz-button nzType="default" nzSize="small" (click)="goMap()">投屏</button> 
+          </div>
+      </nz-header>
+      <nz-content style="background: #f0f2f5;padding:10px;position: relative;">
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-modal [(nzVisible)]="isVisible" nzTitle="修改密码" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+          <form nz-form [formGroup]="editForm" (ngSubmit)="handleOk()">
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>原密码</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-input-group>
+                    <input type="password" nz-input formControlName="oldPwd" placeholder="请输入原始密码">
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="editForm.get('oldPwd').dirty && editForm.get('oldPwd').errors">请输入原始密码!</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>新密码</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                  <nz-input-group> 
+                    <input type="password" nz-input formControlName="newPwd" placeholder="请输入新密码">
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="editForm.get('newPwd').dirty && editForm.get('newPwd').errors">请输入新密码!</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>确认密码</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24"> 
+                  <nz-input-group>
+                    <input type="password" nz-input formControlName="confirmPwd" placeholder="请输入原始密码">
+                  </nz-input-group>
+                  <nz-form-explain *ngIf="editForm.get('confirmPwd').dirty && editForm.get('confirmPwd').errors">请输入确认密码!</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+          </form>
+      </nz-modal>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

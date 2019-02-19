@@ -1,0 +1,75 @@
+<div class="page">
+    <div class="content">
+        <div class="header">
+          <!-- <button nz-button nzType="default">导出</button> -->
+        </div>
+        <div class="content">
+          <div id="chart">
+              
+          </div>
+        </div>
+        <div class="search">
+            <div nz-row>
+                <!-- [nzOffset]="1" -->
+                <!-- <div nz-col nzXXl="6" nzLg="10" nzMd="24" class="filter-item" [nzOffset]="1">
+                    <label>时间:&nbsp;&nbsp;&nbsp;</label>
+                    <nz-range-picker nzFormat="yyyy/MM/dd" [(ngModel)]="search_date" style="width:252px;"></nz-range-picker>
+                </div>
+                <div nz-col nzSpan="6" nzLg="10" nzMd="24" class="filter-item">
+                    <label>设备:&nbsp;&nbsp;&nbsp;</label>
+                    <nz-select class="detail-condition" style="width: 200px;" nzPlaceHolder="请选择设备类型" [(ngModel)]="info.type">
+                        <nz-option nzValue="0" nzLabel="全部"></nz-option>
+                        <nz-option nzValue="2" nzLabel="智能井盖"></nz-option>
+                        <nz-option nzValue="4" nzLabel="智能锁"></nz-option>
+                        <nz-option nzValue="1" nzLabel="烟感"></nz-option>
+                        <nz-option nzValue="3" nzLabel="门磁"></nz-option>
+                        <nz-option nzValue="5" nzLabel="故障指示器"></nz-option>
+                    </nz-select>
+                </div>
+                <div nz-col nzLg="2" nzMd="24" class="filter-item">
+                    <button nz-button type="button" (click)="searchWarning()" class="pull-right">搜索</button>
+                </div> -->
+                <div nz-col nzSpan="18" [nzOffset]="1">
+                    <label>时间:&nbsp;&nbsp;&nbsp;</label>
+                    <nz-range-picker nzFormat="yyyy/MM/dd" [(ngModel)]="search_date" style="width:252px;"></nz-range-picker>
+                    <label style="margin-left: 20px;">设备:&nbsp;&nbsp;&nbsp;</label>
+                    <nz-select class="detail-condition" style="width: 200px;" nzPlaceHolder="请选择设备类型" [(ngModel)]="info.type">
+                        <nz-option nzValue="0" nzLabel="全部"></nz-option>
+                        <nz-option nzValue="2" nzLabel="智能井盖"></nz-option>
+                        <nz-option nzValue="4" nzLabel="智能锁"></nz-option>
+                        <nz-option nzValue="1" nzLabel="烟感"></nz-option>
+                        <nz-option nzValue="3" nzLabel="门磁"></nz-option>
+                        <nz-option nzValue="5" nzLabel="故障指示器"></nz-option>
+                    </nz-select>
+                </div>
+                <div nz-col nzSpan="4" style="text-align: left;">
+                    <button nz-button type="button" (click)="searchWarning()">搜索</button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <nz-table #basicTable [nzData]="warning_list"
+                                    [nzTotal]="info.total" 
+                                    [nzFrontPagination]="false" 
+                                    (nzPageIndexChange)="changePage($event)"
+                                    [nzFrontPagination]="false"
+                                    [nzShowPagination]="false"
+                                    [nzLoading]="info.loading">
+                  <thead>
+                      <tr>
+                          <th>序号</th>
+                          <th>日期</th>
+                          <th>报警数量</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let data of basicTable.data;let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{data.uploaded_at}}</td>
+                          <td>{{data.value}}</td>
+                      </tr>
+                  </tbody>
+              </nz-table>
+        </div>
+    </div>
+</div>

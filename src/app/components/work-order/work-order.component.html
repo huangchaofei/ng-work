@@ -1,0 +1,40 @@
+<div class="page">
+  <div class="content">
+    <p class="export">
+      <!-- <button nz-button nzType="default">导出</button> -->
+    </p>
+    <div>
+       <div id="chart">
+
+       </div>
+    </div>
+    <!-- <div ng-row>
+        <div nz-col nzXl="6">
+            <input type="text" nz-input placeholder="请输入设备串号">
+        </div>
+    </div> -->
+    <nz-table [nzData]="push_list" 
+              [nzShowPagination]="true"
+              [nzTotal]="info.total"
+              (nzPageIndexChange)="changePage($event)"
+              [(nzPageIndex)] = "info.page"
+              [nzPageSize]="info.limit"
+              [nzFrontPagination] = "false"
+              >
+      <thead>
+        <tr>
+          <th>微信用户标识</th>
+          <th>平台账户</th>
+          <th>报警时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of push_list">
+          <td>{{data.open_id}}</td>
+          <td>{{data.user_name}}</td>
+          <td>{{data.uploaded_at}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

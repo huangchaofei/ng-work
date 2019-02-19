@@ -1,0 +1,242 @@
+.page{
+    /*position: relative;*/
+}
+.SearchBar {
+    position: fixed;
+    left: 40px;
+    top: 40px;
+    width: 240px;
+    z-index: 100;
+    z-index: 999;
+}
+.SearchBarBtn{
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    background-image: url(../../../assets/img/mapsprite.png);
+    background-position: -322px -274px;
+    width: 29px;
+    height: 28px;
+}
+.SearchBarDelBtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 2;
+    width: 29px;
+    height: 25px;
+    background-image: url(../../../assets/img/mapsprite.png);
+    background-position: -0px -320px;
+}
+.SearchBaTextIn {
+    font-family: 宋体;
+    font-size: 12px;
+    position: absolute;
+    left: 29px;
+    width: 222px;
+    height: 27px;
+    text-indent: 20px;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(200, 200, 200);
+    border-top: none;
+}
+.SearchBar ul.select{
+    display: block;
+}
+.SearchBar ul {
+    width: 482px;
+    position: absolute;
+    left: -40px;
+    top: 28px;
+    display: none;
+    /*min-height: 168px;*/
+    max-height: 400px;
+    overflow: auto;
+    z-index: 999;
+}
+.SearchBar li {
+    width: 100%;
+    background: #fff;
+    color: #a0a0a0;
+    position: relative;
+    list-style-type: none;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.SearchBar li:hover {
+    background: #e5e5e5;
+}
+.total{
+    /*background: #fff;*/
+    z-index: 999;
+    /*position: absolute;*/
+    /*left: 500px;*/
+    /*top: 35px;*/
+    height: 35px;
+    line-height: 35px;
+    width: auto;
+    text-align: left;
+    padding: 0 10px;
+    color: black;
+    border-radius: 4px;
+    /*background: #a362e0;*/
+    color: #fff;
+    font-size: 17px;
+    /*right: 300px;*/
+}
+.filter-top{
+    width: 260px;
+    height: auto;
+    z-index: 999;
+    /*position: absolute;
+    top: 64px;
+    right: 30px;
+    padding: 5px;*/
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    /*background: #2c8cfd;*/
+    color: #fff;
+}
+.filter-title{
+    text-align: center;
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+.device-btn-group{
+    margin-top: 5px;
+}
+.device-num-gorup{
+    margin-top: 5px;
+}
+.device{
+    border: 1px solid #ccc;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+    background: #fff;
+}
+.device-wrapper{
+    overflow: hidden;
+    display: inline-block;
+}
+.device-num{
+    text-align: center;
+    font-size: 16px;
+}
+.device img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);    
+}
+.active{
+    /*background: #e3e3e3;*/
+    background: skyblue;
+}
+.filter-middle{
+    width: 260px;
+    height: auto;
+    z-index: 999;
+    /*position: absolute;
+    right: 30px;
+    top: 252px;*/
+    padding: 5px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    /*background: #ffb33b;*/
+    color: #fff;
+}
+.status-btn-group{
+    margin-top: 5px;
+}
+.status-num-group{
+    margin-top: 5px;
+}
+.text-center{
+    text-align: center;
+}
+.status-btn{
+    border: 1px solid #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.warning-list{
+    width: 260px;
+    height:  auto;
+    z-index: 999;
+    /*position: absolute;
+    right: 30px;
+    top: 422px;*/
+    padding: 5px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    /*background: #fe5d4d;   */
+    color: #fff;
+    position: relative;
+}
+.warning-content{
+    cursor: pointer;
+    margin: 2px 0;
+    font-size: 12px;
+    width: 95%;
+    margin: 0 auto;
+    text-align: left;
+}
+::ng-deep .warning-content:focus{
+    outline: none!important;
+}
+.pull-right{
+    float: right;
+}
+.more{
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+.all{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 999;
+    background: #2c8cfd;
+    border-radius: 4px;
+}
+.address{
+    position: absolute;
+    top: 37px;
+    left: 10px;
+    z-index: 999;
+    width: 275px;
+}
+.detail-condition{
+    position: absolute;
+    top: 37px;
+    left: 290px;
+    z-index: 999;
+}
+.status-condition{
+    position: absolute;
+    top: 37px;
+    left: 405px;
+    z-index: 999;
+}
+.arrow{
+    position: absolute;
+    width: 15px;
+    height: 60px;
+    background: #2c8cfd;
+    left: -15px;
+    color: #fff;
+    font-size:15px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -1,0 +1,160 @@
+<div style="margin-top:15px;background: #fff;padding: 24px; min-height: 360px;">
+    <div nz-row>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">所属单位</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <div class="input-group">
+                        <div class="form-control" style="height: 32px;">
+                            <span *ngFor="let ent of enterprises" style="font-size:12px;overflow:hidden" [hidden]="ent.id != enterprise.parent_id">{{ent.name}}</span>
+                        </div>
+                        <span class="input-group-btn">
+                            <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseEnterprise()">选择</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">所属人</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <div class="input-group">
+                        <div class="form-control" style="height: 32px;">
+                            <span *ngFor="let user of bind_user" style="font-size:12px;overflow:hidden" [hidden]="user.id != bind_user_id">{{user.name}}</span>
+                        </div>
+                        <span class="input-group-btn">
+                            <button type="button" nz-button nzType="default" class="btn btn-default" style="height: 32px;" (click)="chooseUser()">选择</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">设备组名称</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <input type="text" nz-input placeholder="设备组名称" [(ngModel)]="info.station_name">
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">所在城市</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <app-choose-address 
+                        [parent_provinceOption]="choose_address.provinceOption"></app-choose-address>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">详细地址</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <input type="text" nz-input placeholder="详细地址" [(ngModel)]="info.address">
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <!-- <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">经纬度</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <div class="input-group">
+                        <div class="form-control" style="height: 32px;">
+                            <span>{{info.lng}},{{info.lat}}</span>
+                        </div>
+                        <span class="input-group-btn">
+                            <button type="button" nz-button nzType="default" class="btn btn-info btn-outline btn-size-12" data-toggle="modal" data-target="#LocationModal" (click)="getMap()">选经纬度
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div> -->
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">联系人</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <input type="text" nz-input placeholder="联系人" [(ngModel)]="info.contacts">
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">联系电话</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <input type="text" nz-input placeholder="联系电话" [(ngModel)]="info.phone">
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">备注</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <input type="text" nz-input placeholder="备注" [(ngModel)]="info.remarks">
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+            </div>
+        </div>
+        <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">设备组状态</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <nz-select style="width: 100%;" [(ngModel)]="info.status">
+                        <nz-option nzValue="1" nzLabel="使用中"></nz-option>
+                        <nz-option nzValue="2" nzLabel="测试中"></nz-option>
+                    </nz-select>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+            </div>
+        </div>
+        <!-- <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+            <div nz-row [nzGutter]="16">
+                <label nz-col nzLg="8" nzXL="4" class="text-right add-label">投入使用时间</label>
+                <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                    <nz-date-picker [(ngModel)]="info.open_forbin_date" (ngModelChange)="onChange($event)" nzPlaceHolder="请选择投入使用时间" style="width: 100%;"></nz-date-picker>
+                </div>
+                <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+            </div>
+        </div> -->
+    </div>
+    <div nz-row>
+        <div nz-col class="text-center add-footer">
+            <a [routerLink]="['/station']">
+                <button nz-button nzType="default">取消</button>
+            </a>
+            <button nz-button nzType="primary" (click)="submit()" class="submit-right">确认</button>
+        </div>
+    </div>
+    <app-choose-enterprise #chooseEnterpriseChild (childQuery)="getEnterpriseId($event)" [parent_id]="enterprise.parent_id"></app-choose-enterprise>
+</div>
+<!-- <nz-modal 
+    [(nzVisible)]="isVisible" 
+    nzTitle="请选择经纬度" 
+    (nzOnCancel)="handleCancel()" 
+    (nzOnOk)="handleOk()"
+    [nzBodyStyle] = "bodyStyle"
+    nzWidth = '1000px'
+    >
+    <input type="text" nz-input [(ngModel)]="longitude" class="longitude" style="width: 300px;">
+    <div id="container" style="width: 100%;height: 100%;"></div>
+</nz-modal> -->
+<!-- 选择设备组所属人 -->
+<nz-modal [(nzVisible)]="isVisibleUser" nzTitle="选择设备组所属人" (nzOnCancel)="bindUserCancel()" (nzOnOk)="bindUserOk()" [nzFooter]="modalFooter">
+  <nz-radio-group [(ngModel)]="bind_user_id" style="width: 100%;">
+        <label nz-radio *ngFor="let user of bind_user" nzValue="{{user.id}}" [ngStyle]="style" class="frogEnterprise-level-{{user.id}}"
+        style="width: 50%;margin-right: 0;">{{user.name}}</label>
+  </nz-radio-group>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="bindUserCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="bindUserOk()">确定</button>
+  </ng-template>
+</nz-modal>

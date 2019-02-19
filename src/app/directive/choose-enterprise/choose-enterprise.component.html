@@ -1,0 +1,9 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="选择归属公司" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzFooter]="modalFooter">
+	<nz-radio-group [(ngModel)]="enterprise.parent_id">
+		<label nz-radio *ngFor="let ent of enterprises" nzValue="{{ent.id}}" [ngStyle]="style" class="frogEnterprise-level-{{ent.level}}">{{ent.name}}</label>
+  </nz-radio-group>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="cancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleOk()">确定</button>
+  </ng-template>
+</nz-modal>

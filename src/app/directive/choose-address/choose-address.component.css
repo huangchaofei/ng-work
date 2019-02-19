@@ -1,0 +1,12 @@
+.ant-cascader-picker {
+  width: 300px;
+}
+
+.change-options {
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.choose_address .ant-select{
+    width: 33.3%!important;
+}

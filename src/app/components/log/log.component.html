@@ -1,0 +1,35 @@
+<div class="page">
+  <div class="content">
+    <!-- <div class="header">
+       <p>系统操作日志</p>
+    </div> -->
+    <div nz-row>
+      <div nz-col nzMd="20">时间选择:<nz-range-picker 
+                                        [nzFormat]="dateFormat" 
+                                        [(ngModel)]="info.search_date"
+                                        (ngModelChange) = 'dateChange($event)'
+                                        ></nz-range-picker></div>
+      <div nz-col nzMd="4"><button nz-button nzType="default" (click)="search()" class="pull-right">搜索</button></div>
+    </div>
+    <div class="table">
+      <nz-table #basicTable [nzData]="logList" [nzPageSize]="20" (nzPageIndexChange)="changePage($event)">
+        <thead>
+          <tr>
+            <th>操作</th>
+            <th>用户名</th>
+            <th>操作时间</th>
+            <th>ip地址</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.content}}</td>
+            <td>{{data.system_name}}</td>
+            <td>{{data.created_at}}</td>
+            <td>{{data.ip}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>

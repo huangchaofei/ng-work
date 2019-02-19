@@ -1,0 +1,48 @@
+<div class="page">
+  <div class="content">
+      <div class="header">
+        <!-- <button nz-button nzType="default">导出</button> -->
+      </div>
+      <div class="content">
+        <div id="chart">
+            
+        </div>
+      </div>
+      <div class="search">
+          <div nz-row>
+              <div nz-col nzXl="16" [nzOffset]="3">
+                <label>时间选择:&nbsp;&nbsp;&nbsp;</label>
+                <nz-range-picker nzFormat="yyyy/MM/dd" [(ngModel)]="search_date"></nz-range-picker>
+                <button nz-button type="button" (click)="searchPush()" class="pull-right">搜索</button>
+            </div>
+          </div>
+      </div>
+      <div style="margin-top: 20px;">
+          <nz-table #basicTable [nzData]="push_list"
+                                  [nzTotal]="info.total" 
+                                  [nzFrontPagination]="false" 
+                                  (nzPageIndexChange)="changePage($event)"
+                                  [nzShowPagination]="false"
+                                  [nzLoading]="info.loading">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>日期</th>
+                        <th>推送数量</th>
+                        <th>查看</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data;let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{data.uploaded_at}}</td>
+                        <td>{{data.value}}</td>
+                        <td>
+                            <button nz-button nzType="primary" nzSize="small" (click)="goDetail(data.uploaded_at)">详情</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+      </div>
+  </div>
+</div>

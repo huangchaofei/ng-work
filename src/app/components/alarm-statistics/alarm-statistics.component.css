@@ -1,0 +1,15 @@
+.content{
+    padding: 20px;
+    background-color: #ffffff;
+}
+.header{
+    text-align: right;
+}
+#chart{
+    height: 500px;
+    width: 900px;
+    margin: 0 auto;
+}
+.filter-item{
+    margin-top: 5px;
+}

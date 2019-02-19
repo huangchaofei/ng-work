@@ -1,0 +1,130 @@
+<div style="margin-top:15px;background: #fff;padding: 24px; min-height: 360px;">
+    <form #addForm='ngForm' (ngSubmit)="submit(addForm)">
+        <div nz-row>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">归属单位</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <app-form-choose-enterprise [(ngModel)]="systemDetail.enterprise_id" name="enterprise_id" [type]="'systemUserGroup'"
+                        (ngModelChange)="changeEnterprise($event)"></app-form-choose-enterprise>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">用户名</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <input type="text" nz-input placeholder="用户名" [(ngModel)]="systemDetail.name" name="name" required>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div>
+            <!-- <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">性别</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <nz-radio-group [(ngModel)]="systemDetail.gender" name="gender" style="padding-top: 7px">
+                          <label nz-radio nzValue="1">男</label>
+                          <label nz-radio nzValue="2">女</label>
+                        </nz-radio-group>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div> -->
+            
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">归属系统用户组</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <app-choose-system-user-group [(ngModel)]="systemDetail.group_id" name="group_id" [parent_id]="systemDetail.enterprise_id"></app-choose-system-user-group>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">类型</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <nz-select style="width: 100%;" [ngModel]="systemDetail.type" name="type">
+                            <nz-option nzValue="1" nzLabel="系统管理员"></nz-option>
+                            <nz-option nzValue="2" nzLabel="运维人员"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">用户手机</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <input type="text" nz-input placeholder="用户手机" [(ngModel)]="systemDetail.phone" name="phone" 
+                        pattern="[1][3578][0-9]{9}">
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1">*</div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">用户邮箱</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <input type="text" nz-input placeholder="用户邮箱" [(ngModel)]="systemDetail.email" name="email">
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">详细地址</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <input type="text" nz-input placeholder="详细地址" [(ngModel)]="systemDetail.address" name="address">
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">真实姓名</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <input type="text" nz-input placeholder="真实姓名" [(ngModel)]="systemDetail.realname" name="realname">
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">生日</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <nz-date-picker [(ngModel)]="systemDetail.birthday" name="birthday" (ngModelChange)="dateChange($event)"></nz-date-picker>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+                </div>
+            </div>
+            <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="11" nzOffset="1" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">所在城市</label>
+                    <div nz-col nzLg="15" nzXl="15" nzXXl="13">
+                        <app-choose-address></app-choose-address>
+                    </div>
+                    <div class="red-start" nz-col nzLg="1" nzXl="1" nzXXl="1"></div>
+                </div>
+            </div>
+            <!-- <div nz-col nzXs="23" nzMd="11" nzLg="11" nzXl="12" class="add-form">
+                <div nz-row [nzGutter]="16">
+                    <label nz-col nzLg="8" nzXL="4" class="text-right add-label">国家</label>
+                    <div nz-col nz-col nzLg="16" nzXl="12">
+                        <app-choose-address></app-choose-address>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+            <div nz-row>
+                <div nz-col class="text-center add-footer">
+                    <a [routerLink]="['/systemUser']">
+                        <button nz-button nzType="default">取消</button>
+                    </a>
+                    <button nz-button nzType="primary" type="submit" class="submit-right">确认</button>
+                </div>
+            </div>
+    </form>
+</div>
